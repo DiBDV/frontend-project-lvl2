@@ -11,6 +11,7 @@
     "url": "git+https://github.com/DiBDV/frontend-project-lvl2.git"
   },
   "keywords": [
+    "bedov",
     "comparator",
     "cli",
     ".js"
@@ -19,6 +20,9 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/DiBDV/frontend-project-lvl2/issues"
+  },
+  "simple-git-hooks": {
+    "pre-push": "make lint"
   },
   "homepage": "https://github.com/DiBDV/frontend-project-lvl2#readme"
 }
