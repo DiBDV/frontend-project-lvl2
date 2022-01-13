@@ -1,17 +1,16 @@
 #!/usr/bin/env node
 
-//commander.js to generate helper functionality
+//commander.js integration to generate helper functionality
 
-const commander = require('../'); // to include commander in git clone
-const program = new commnader.Command();
+const { Command } = require ('commander');
+const program = new Command();
 
 program
-  .description('Compares two configuration files and shows a difference.')
+  .version('0.0.1')
   .name("gendiff")
-  .usage("[options]")
+  .description('Compares two configuration files and shows a difference.')
   .option('-V, --version', 'output the version number')
   .option('-h, --help', 'output usage information');
 
-program.parse(process.argv);
 
 
