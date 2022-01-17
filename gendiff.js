@@ -21,13 +21,15 @@ program
     // const filepath1 = JSON.parse(file1)
     try {
       const file1 = fs.readFileSync(filepath1);
-      console.log(file1);
+      const parsedFile1 = JSON.parse(file1);
+      console.log(parsedFile1);
     } catch (e) {
       console.log(e);
     }
     try {
       const file2 = fs.readFileSync(filepath2);
-    console.log(file2);
+      const parsedFile2 = JSON.parse(file2);
+      console.log(parsedFile2);
     } catch (e) {
       console.log(e);
     }
