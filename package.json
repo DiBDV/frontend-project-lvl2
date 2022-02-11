@@ -28,5 +28,8 @@
   "homepage": "https://github.com/DiBDV/frontend-project-lvl2#readme",
   "dependencies": {
     "commander": "^8.3.0"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
   }
 }
