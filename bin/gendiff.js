@@ -8,7 +8,7 @@ import { Command } from 'commander';
 const program = new Command();
 
 
-program.version('0.0.1');
+program.version('0.1.0');
 
 program
   .description('Compares two configuration files and shows a difference.')
@@ -18,25 +18,24 @@ program
   .action( (filepath1, filepath2) => {   
     // const filepath1 = JSON.parse(file1)
     //move to index.js
-    try {
+
       const file1 = fs.readFileSync(filepath1);
       const parsedFile1 = JSON.parse(file1);
-      //create parcer to call for both files and extra read function to read the files;
-      // path.resolve() и process.cwd() are Node.js modules (find !!)
+      // NB to DO:
+      // 1st - https://ru.hexlet.io/challenges/js_objects_operations_exercise
+      // 2nd - https://ru.hexlet.io/challenges/js_trees_stringify_exercise
+
+      // create parcer to call for both files and extra read function to read the files;
+      // path.resolve() - absolute path to the file
+      // и process.cwd() - to read current dir path. are Node.js modules (find !!)
       // check "three" module.
-      // separete function to compare and draft the treee NB.
-      
-      console.log(parsedFile1);
-    } catch (e) {
-      console.log(e);
-    }
-    try {
+      // separete function to compare and draft the tree NB.
+
       const file2 = fs.readFileSync(filepath2);
       const parsedFile2 = JSON.parse(file2);
-      console.log(parsedFile2);
-    } catch (e) {
-      console.log(e);
-    }
+
+
+
   });
 
 program.parse(process.argv);
