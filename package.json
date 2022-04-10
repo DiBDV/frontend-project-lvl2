@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "0.0.1",
   "description": "Utility to compare configuration files and show the difference",
-  "main": "gendiff.js",
+  "main": "src/index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,7 +15,9 @@
     "bedov",
     "comparator",
     "cli",
-    ".js"
+    ".js",
+    "hexlet",
+    "2ndProject"
   ],
   "author": "Dmitrii Bedov",
   "license": "ISC",
