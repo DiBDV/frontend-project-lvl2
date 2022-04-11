@@ -12,13 +12,13 @@ export const parse = (content) => {
 export const buildDiff = (data1, data2) => {
   const keys1 = Object.keys(data1);
   const keys2 = Object.keys(data2);
-  const keys = _.union(keys1, keys2);
+  const keys = _.sortBy(_.union(keys1, keys2));
   const result = {};
   for (const key of keys) {
     if (!Object.hasOwn(data1, key)) {
       result[key] = {type: "added", value: data2[key]};
     } else if (!Object.hasOwn(data2, key)) {
-      result[key] = {type: "deleted", value: data1[key]};
+      result[key] = {type: "deleted", value: data1[key]} ;
     } else if (data1[key] !== data2[key]) {
       result[key] = {type: "changed", value: [data1[key], data2[key]]};
     } else {
@@ -37,14 +37,20 @@ export const renderDiff = (diff, format) => {
         if (!_.isObject(currentValue)) { 
           return `${currentValue}`;
         }
-    
         const indentSize = depth * spacesCount;
         const currentIndent = replacer.repeat(indentSize);
         const bracketIndent = replacer.repeat(indentSize - spacesCount);
         const lines = Object
           .entries(currentValue)
-          .map(([key, val]) => `+${currentIndent}${key}: ${iter(val, depth + 1)}`);
-    
+          .flatMap(([key, val]) => {
+            if(val.type === "changed") {
+              return [
+                `${currentIndent}- ${key}: ${val.value[0]}`,
+                `${currentIndent}+ ${key}: ${val.value[1]}`
+              ];
+            }
+            return `${currentIndent}${paintSign(val.type)} ${key}: ${iter(val.value, depth + 1)}`
+          });
         return [
           '{',
           ...lines,
@@ -55,6 +61,20 @@ export const renderDiff = (diff, format) => {
       return iter(diff, 1);
 };
 
+const paintSign = (type) => {
+  switch (type) {
+    case "added":
+      return "+";
+    case "deleted":
+      return "-";
+    case "changed":
+      return "";
+    case "unchanged":
+      return " ";
+    default:
+      return "";
+  }
+};
 // ################################# NB to DO ######################################################
 
 // 1st - https://ru.hexlet.io/challenges/js_objects_operations_exercise
