@@ -1,4 +1,5 @@
 import _ from "lodash";
+import filepath from "filepath";
 
 export const parse = (content) => {
   try {
@@ -32,7 +33,7 @@ export const buildDiff = (data1, data2) => {
 const spacesCount = 2;
 const replacer = " ";
 
-export const renderDiff = (diff, format) => {
+export const renderDiff = (diff, /*format*/) => {
     const iter = (currentValue, depth) => {
         if (!_.isObject(currentValue)) { 
           return `${currentValue}`;
