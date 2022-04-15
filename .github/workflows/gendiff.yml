@@ -23,7 +23,6 @@ jobs:
         # https://github.com/actions/checkout
       - uses: actions/checkout@v3
       - name: Install npm
-        run: npm i
       - name: Use Node.js ${{ matrix.node-version }}
         # Configures the node version used on GitHub-hosted runners
         # https://github.com/actions/setup-node
