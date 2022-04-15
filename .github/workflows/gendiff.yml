@@ -1,5 +1,5 @@
 # Name of the workflow
-name: gendiff_CI
+name: CI for gendiff
 
 # Trigger the workflow on push or pull request
 on:
