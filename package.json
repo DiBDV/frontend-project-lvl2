@@ -21,6 +21,9 @@
   ],
   "author": "Dmitrii Bedov",
   "license": "ISC",
+  "bin": {
+    "gendiff": "./bin/gendiff.js"
+  },
   "bugs": {
     "url": "https://github.com/DiBDV/frontend-project-lvl2/issues"
   },
