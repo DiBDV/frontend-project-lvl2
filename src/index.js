@@ -1,5 +1,5 @@
 import _ from "lodash";
-import filepath from "filepath";
+import filepath from "path";
 
 export const parse = (content) => {
   try {
