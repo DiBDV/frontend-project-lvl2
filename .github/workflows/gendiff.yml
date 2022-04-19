@@ -32,8 +32,8 @@ jobs:
         cache: 'npm'
     - run: make install
     - run: make lint
-    - name:
-    - uses: paambaati/codeclimate-action@v2.2.4
+    - name: Codeclimate test coverage
+      uses: paambaati/codeclimate-action@v2.2.4
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE}}
       with:
