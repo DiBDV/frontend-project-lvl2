@@ -1,6 +1,6 @@
 import _ from "lodash";
 import filepath from "path";
-import { getFileContent } from "./get-file-content";
+import { getFileContent } from "./get-file-content.js";
 
 
 export const parse = (content) => {
