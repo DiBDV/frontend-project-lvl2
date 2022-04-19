@@ -1,5 +1,7 @@
 import _ from "lodash";
 import filepath from "path";
+import { getFileContent } from "./get-file-content";
+
 
 export const parse = (content) => {
   try {
@@ -76,6 +78,19 @@ const paintSign = (type) => {
       return "";
   }
 };
+
+export const gendiff = (filepath1, filepath2, format) => {
+  const file1Content = getFileContent(filepath1);
+  const file2Content = getFileContent(filepath2);
+
+  const obj1 = parse(file1Content);
+  const obj2 = parse(file2Content);
+  const diff = buildDiff(obj1, obj2);
+  const result = renderDiff(diff, format);
+  return result;
+};
+
+
 // ################################# NB to DO ######################################################
 
 // 1st - https://ru.hexlet.io/challenges/js_objects_operations_exercise

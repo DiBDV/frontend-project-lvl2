@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import { resolve } from 'path';
 
-// Получаем путь к файлу. Не совсем понятно, работает или нет.
 export const getFileContent = (filepath) => {
     try {
         return fs.readFileSync(resolve(filepath), 'utf8');

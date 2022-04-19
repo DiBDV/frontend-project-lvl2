@@ -19,21 +19,22 @@ jobs:
         node-version: [16.x]
 
     steps:
-        # Check-out repository under GitHub workspace
-        # https://github.com/actions/checkout
-      - uses: actions/checkout@v3      
-      - name: Use Node.js ${{ matrix.node-version }}
-        # Configures the node version used on GitHub-hosted runners
-        # https://github.com/actions/setup-node
-      - uses: actions/setup-node@v3
-        # The Node.js version to configure
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - run: make install
-      - run: make lint
-      - uses: paambaati/codeclimate-action@v2.2.4
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE}}
-        with:
-          coverageCommand: make test-coverage
+      # Check-out repository under GitHub workspace
+      # https://github.com/actions/checkout
+    - uses: actions/checkout@v3      
+    - name: Use Node.js ${{ matrix.node-version }}
+      # Configures the node version used on GitHub-hosted runners
+      # https://github.com/actions/setup-node
+      uses: actions/setup-node@v3
+      # The Node.js version to configure
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: make install
+    - run: make lint
+    - name:
+    - uses: paambaati/codeclimate-action@v2.2.4
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE}}
+      with:
+        coverageCommand: make test-coverage

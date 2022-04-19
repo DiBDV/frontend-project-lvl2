@@ -1,0 +1,2 @@
+import { gendiff } from "../src";
+

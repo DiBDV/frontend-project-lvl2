@@ -1,0 +1,4 @@
+# make tests like in https://ru.hexlet.io/courses/js-testing/lessons/jest/theory_unit
+
+testEach
+
