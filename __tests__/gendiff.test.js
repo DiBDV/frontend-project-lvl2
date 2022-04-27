@@ -1,4 +1,4 @@
-import { gendiff } from "../src";
+import gendiff from "../src/index.js";
 
 test("gendiff", () => {
     expect(gendiff("__tests__/__fixtures__/file1.json", "__tests__/__fixtures__/file2.json", "json")).toBe(
