@@ -6,5 +6,5 @@ export const parse = (content, format) => {
     } else if (format === '.yml' || format === '.yaml') {
         return yaml.safeLoad(content);
     }
-    throw new Error(`Format: ${format} not supported`);
+    // throw new Error(`Format: ${format} not supported`);
 };
