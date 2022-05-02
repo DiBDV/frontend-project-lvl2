@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1651518198317" clover="3.2.0">
-  <project timestamp="1651518198317" name="All files">
+<coverage generated="1651520129006" clover="3.2.0">
+  <project timestamp="1651520129006" name="All files">
     <metrics statements="54" coveredstatements="50" conditionals="21" coveredconditionals="19" methods="8" coveredmethods="8" elements="83" coveredelements="77" complexity="0" loc="54" ncloc="54" packages="1" files="3" classes="3"/>
     <file name="get-file-content.js" path="/Volumes/Data/Dev_Projects/Hexlet/gendiff/frontend-project-lvl2/src/get-file-content.js">
       <metrics statements="5" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
