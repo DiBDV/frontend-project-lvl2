@@ -1,16 +1,7 @@
 import _ from "lodash";
-import filepath from "path";
+import path from "path";
 import { getFileContent } from "./get-file-content.js";
-
-
-export const parse = (content) => {
-  try {
-    return JSON.parse(content);
-  } catch (error) {
-    console.log(error);
-    throw new Error(`File ${filepath} not found`);
-  }
-};
+import { parse } from "./parsers.js";
 
 export const buildDiff = (data1, data2) => {
   const keys1 = Object.keys(data1);
@@ -35,7 +26,7 @@ export const buildDiff = (data1, data2) => {
 const spacesCount = 2;
 const replacer = " ";
 
-export const renderDiff = (diff, /*format*/) => {
+export const renderDiff = (diff) => {
     const iter = (currentValue, depth) => {
         if (!_.isObject(currentValue)) { 
           return `${currentValue}`;
@@ -79,17 +70,19 @@ const paintSign = (type) => {
   }
 };
 
-export const gendiff = (filepath1, filepath2, format) => {
+ const gendiff = (filepath1, filepath2, format) => {
   const file1Content = getFileContent(filepath1);
   const file2Content = getFileContent(filepath2);
 
-  const obj1 = parse(file1Content);
-  const obj2 = parse(file2Content);
-  const diff = buildDiff(obj1, obj2);
+  const data1 = parse(file1Content, path.extname(filepath1));
+  const data2 = parse(file2Content, path.extname(filepath2));
+
+  const diff = buildDiff(data1, data2);
   const result = renderDiff(diff, format);
   return result;
 };
 
+export default gendiff;
 
 // ################################# NB to DO ######################################################
 
