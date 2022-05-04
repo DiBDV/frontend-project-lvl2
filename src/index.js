@@ -39,15 +39,3 @@ export const buildDiff = (data1, data2) => {
 };
 
 export default gendiff;
-
-// ################################# NB to DO ######################################################
-
-// 1st - https://ru.hexlet.io/challenges/js_objects_operations_exercise
-// 2nd - https://ru.hexlet.io/challenges/js_trees_stringify_exercise
-
-// create parcer to call for both files and extra read function to read the files;
-// path.resolve() - absolute path to the file
-// и process.cwd() - to read current dir path. are Node.js modules (find !!)
-// check "three" module.
-// separete function to compare and draft the tree NB.
-// find a way to make prettier work in VS code 
