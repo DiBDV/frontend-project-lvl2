@@ -29,7 +29,7 @@ export const stylishRenderDiff = (diff) => {
             if(val.type === "nested") {
             return `${currentIndent} ${key}: ${iter(val.value, depth + 1)}`;
             }
-            return `${currentIndent} ${key}: ${val.value}`;
+            return `${currentIndent}  ${key}: ${val.value}`;
           });
         return [
           '{',
