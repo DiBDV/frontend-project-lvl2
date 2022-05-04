@@ -14,6 +14,7 @@ program
   .description('Compares two configuration files and shows a difference.')
   .argument('<filepath1>')
   .argument('<filepath2>')
+  .argument('<format>')
   .option('-f, --format [type]', 'output format')
   .action( (filepath1, filepath2) => {
    const result = gendiff(filepath1, filepath2, program.format);

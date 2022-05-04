@@ -2,6 +2,7 @@ import _ from "lodash";
 import path from "path";
 import { getFileContent } from "./get-file-content.js";
 import { parse } from "./parsers.js";
+import { renderDiff } from "./formatter/stylish.js";
 
 export const buildDiff = (data1, data2) => {
   const keys1 = Object.keys(data1);
@@ -13,61 +14,16 @@ export const buildDiff = (data1, data2) => {
       result[key] = {type: "added", value: data2[key]};
     } else if (!Object.hasOwn(data2, key)) {
       result[key] = {type: "deleted", value: data1[key]} ;
-    } else if (data1[key] !== data2[key]) {
+    } else if (!_.isEqual(data1[key], data2[key])) {
       result[key] = {type: "changed", value: [data1[key], data2[key]]};
+    } else if (_.isPlainObject(data1[key]) && _.isPlainObject(data2[key])) {
+      result[key] = {type: "nested", value: /* тут должна быть рекурси*/ data1[key]};
     } else {
       result[key] = {type: "unchanged", value: data1[key]};
-    }
+    } 
   }
 
   return result;
-};
-
-const spacesCount = 2;
-const replacer = " ";
-
-export const renderDiff = (diff) => {
-    const iter = (currentValue, depth) => {
-        if (!_.isObject(currentValue)) { 
-          return `${currentValue}`;
-        }
-        const indentSize = depth * spacesCount;
-        const currentIndent = replacer.repeat(indentSize);
-        const bracketIndent = replacer.repeat(indentSize - spacesCount);
-        const lines = Object
-          .entries(currentValue)
-          .flatMap(([key, val]) => {
-            if(val.type === "changed") {
-              return [
-                `${currentIndent}- ${key}: ${val.value[0]}`,
-                `${currentIndent}+ ${key}: ${val.value[1]}`
-              ];
-            }
-            return `${currentIndent}${paintSign(val.type)} ${key}: ${iter(val.value, depth + 1)}`
-          });
-        return [
-          '{',
-          ...lines,
-          `${bracketIndent}}`,
-        ].join('\n');
-      };
-    
-      return iter(diff, 1);
-};
-
-const paintSign = (type) => {
-  switch (type) {
-    case "added":
-      return "+";
-    case "deleted":
-      return "-";
-    case "changed":
-      return "";
-    case "unchanged":
-      return " ";
-    default:
-      return "";
-  }
 };
 
  const gendiff = (filepath1, filepath2, format) => {
