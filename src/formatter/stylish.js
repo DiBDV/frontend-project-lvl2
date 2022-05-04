@@ -3,7 +3,7 @@ import _ from "lodash";
 const spacesCount = 2;
 const replacer = " ";
 
-export const renderDiff = (diff) => {
+export const stylishRenderDiff = (diff) => {
     const iter = (currentValue, depth) => {
         if (!_.isObject(currentValue)) { 
           return `${currentValue}`;

@@ -2,7 +2,7 @@ import _ from "lodash";
 import path from "path";
 import { getFileContent } from "./get-file-content.js";
 import { parse } from "./parsers.js";
-import { renderDiff } from "./formatter/stylish.js";
+import { stylishRenderDiff } from "./formatter/stylish.js";
 
 export const buildDiff = (data1, data2) => {
   const keys1 = Object.keys(data1);
@@ -34,7 +34,7 @@ export const buildDiff = (data1, data2) => {
   const data2 = parse(file2Content, path.extname(filepath2));
 
   const diff = buildDiff(data1, data2);
-  const result = renderDiff(diff, format);
+  const result = stylishRenderDiff(diff, format);
   return result;
 };
 
