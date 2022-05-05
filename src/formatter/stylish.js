@@ -14,20 +14,20 @@ export const stylishRenderDiff = (diff) => {
         const lines = Object
           .entries(currentValue)
           .flatMap(([key, val]) => {
-            if(val.type === "changed") {
-              return [
-                `${currentIndent}- ${key}: ${val.value[0]}`,
-                `${currentIndent}+ ${key}: ${val.value[1]}`
-              ];
-            }
-            if(val.type === "added") {
-              return `${currentIndent}+ ${key}: ${val.value}`;
-            }
-            if(val.type === "deleted") {
+            if(val.type === "nested") {
+                return `${currentIndent}  ${key}: ${iter(val.value, depth + 1)}`;
+                }
+            else if(val.type === "added") {
+                    return `${currentIndent}+ ${key}: ${val.value}`;
+                  }            
+            else if(val.type === "deleted") {
                 return `${currentIndent}- ${key}: ${val.value}`;
             }
-            if(val.type === "nested") {
-            return `${currentIndent} ${key}: ${iter(val.value, depth + 1)}`;
+            else if(val.type === "changed") {
+                return [
+                  `${currentIndent}- ${key}: ${val.value[0]}`,
+                  `${currentIndent}+ ${key}: ${val.value[1]}`
+                ];
             }
             return `${currentIndent}  ${key}: ${val.value}`;
           });
