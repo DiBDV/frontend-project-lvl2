@@ -3,7 +3,7 @@ import _ from "lodash";
 const spacesCount = 2;
 const replacer = " ";
 
-export const stylishRenderDiff = (diff) => {
+export const plainRenderDiff = (diff) => {
     const iter = (currentValue, depth) => {
         if (!_.isObject(currentValue)) { 
           return `${currentValue}`;
@@ -18,7 +18,7 @@ export const stylishRenderDiff = (diff) => {
                 return `${currentIndent}  ${key}: ${iter(val.value, depth + 1)}`;
                 }
             else if(val.type === "added") {
-                    return `${currentIndent}+ ${key}: ${val.value}`;
+                    return `was added with value: ${val.value}`;
                   }            
             else if(val.type === "deleted") {
                 return `${currentIndent}- ${key}: ${val.value}`;
@@ -32,7 +32,7 @@ export const stylishRenderDiff = (diff) => {
             return `${currentIndent}  ${key}: ${val.value}`;
           });
         return [
-          '{',
+          'Property',
           ...lines,
           `${bracketIndent}}`,
         ].join('\n');

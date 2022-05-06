@@ -9,15 +9,22 @@ const getFixturePath = (filename) => path.resolve(__dirname, '..', '__tests__/__
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
 test("gendiff flat file", () => {
-    expect(gendiff("__tests__/__fixtures__/file1.json", "__tests__/__fixtures__/file2.json", "json")).toBe(
+    expect(gendiff("__tests__/__fixtures__/file1.json", "__tests__/__fixtures__/file2.json", "stylish")).toBe(
       readFile("expected_01.txt"));
-    expect(gendiff("__tests__/__fixtures__/file1.yaml", "__tests__/__fixtures__/file2.yaml", "yaml")).toBe(
+    expect(gendiff("__tests__/__fixtures__/file1.yaml", "__tests__/__fixtures__/file2.yaml", "stylish")).toBe(
       readFile("expected_01.txt"));
     });
 
-test("gendiff recursion", () => {
-    expect(gendiff("__tests__/__fixtures__/file1_recursion.json", "__tests__/__fixtures__/file2_recursion.json", "json")).toBe(
+test("gendiff recursion stylish", () => {
+    expect(gendiff("__tests__/__fixtures__/file1_recursion.json", "__tests__/__fixtures__/file2_recursion.json", "stylish")).toBe(
       readFile("expected_02.txt"));
-    expect(gendiff("__tests__/__fixtures__/file1_recursion.yml", "__tests__/__fixtures__/file2_recursion.yml", "yaml")).toBe(
+    expect(gendiff("__tests__/__fixtures__/file1_recursion.yml", "__tests__/__fixtures__/file2_recursion.yml", "stylish")).toBe(
       readFile("expected_02.txt"));
     });
+
+test("gendiff recursion plain", () => {
+  expect(gendiff("__tests__/__fixtures__/file1_recursion.json", "__tests__/__fixtures__/file2_recursion.json", "stylish")).toBe(
+    readFile("expected_03.txt"));
+  expect(gendiff("__tests__/__fixtures__/file1_recursion.yml", "__tests__/__fixtures__/file2_recursion.yml", "stylish")).toBe(
+    readFile("expected_03.txt"));
+  });
