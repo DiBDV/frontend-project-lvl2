@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">96.29% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>29/29</span>
+                <span class='fraction'>26/27</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">92.85% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>13/14</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">96.29% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>29/29</span>
+                <span class='fraction'>26/27</span>
             </div>
         
             
@@ -111,7 +111,8 @@
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -126,18 +127,13 @@
 <span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-yes">64x</span>
 <span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">52x</span>
-<span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-yes">35x</span>
 <span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">25x</span>
 <span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -153,9 +149,15 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -173,19 +175,14 @@ export const buildDiff = (data1, data2) =&gt; {
   const result = {};
   for (const key of keys) {
     if (_.isPlainObject(data1[key]) &amp;&amp; _.isPlainObject(data2[key])) {
-      console.log("nested", data1[key], data2[key]);
        result[key] = {type: "nested", value: buildDiff(data1[key], data2[key])};
     } else if (!Object.hasOwn(data1, key)) {
-      console.log("added", data2[key]);
       result[key] = {type: "added", value: data2[key]};
     } else if (!Object.hasOwn(data2, key)) {
-      console.log("deleted", data1[key]);
       result[key] = {type: "deleted", value: data1[key]} ;
     } else if (!_.isEqual(data1[key], data2[key])) {
-      console.log("changed", data1[key], data2[key]);
       result[key] = {type: "changed", value: [data1[key], data2[key]]};
     } else {
-      console.log("unchanged", data1[key]);
       result[key] = {type: "unchanged", value: data1[key]};
     } 
   }
@@ -201,9 +198,15 @@ export const buildDiff = (data1, data2) =&gt; {
   const data2 = parse(file2Content, path.extname(filepath2));
 &nbsp;
   const diff = buildDiff(data1, data2);
-  const result = stylishRenderDiff(diff, format);
-  // const result = plainRenderDiff(diff, format);
-  return result;
+&nbsp;
+  if (format === "plain") {
+    return plainRenderDiff(diff, format);
+  } if (format === "stylish") {
+     return stylishRenderDiff(diff, format);
+  } else <span class="missing-if-branch" title="else path not taken" >E</span>{
+<span class="cstat-no" title="statement not covered" >    return "Please specify the output format. The format can be either 'plain' or 'stylish'.";</span>
+  }
+&nbsp;
 };
 &nbsp;
 export default gendiff;
@@ -214,7 +217,7 @@ export default gendiff;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Fri May 06 2022 19:51:45 GMT+0200 (Central European Summer Time)
+                at Mon May 09 2022 19:03:48 GMT+0200 (Central European Summer Time)
             </div>
         <script src="../prettify.js"></script>
         <script>

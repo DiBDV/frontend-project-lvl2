@@ -1,23 +1,21 @@
 #!/usr/bin/env node
 
-import { Command } from 'commander';
+import program from 'commander';
 import gendiff from '../src/index.js';
 
 
 //commander.js integration to generate helper functionality
-const program = new Command();
+// const program = new Command();
 
-
-program.version('0.1.0');
 
 program
-  .description('Compares two configuration files and shows a difference.')
+  .description('Compares two configuration files and shows the difference.')
+  .version('0.7.0')
+  .option('-f, --format [type]', 'output format')
   .argument('<filepath1>')
   .argument('<filepath2>')
-  .argument('<format>')
-  .option('-f, --format [type]', 'output format')
   .action( (filepath1, filepath2) => {
-   const result = gendiff(filepath1, filepath2, program.format);
+   const result = gendiff(filepath1, filepath2, program.opts().format);
    console.log(result);
   });
 

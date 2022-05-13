@@ -23,8 +23,8 @@ test("gendiff recursion stylish", () => {
     });
 
 test("gendiff recursion plain", () => {
-  expect(gendiff("__tests__/__fixtures__/file1_recursion.json", "__tests__/__fixtures__/file2_recursion.json", "stylish")).toBe(
+  expect(gendiff("__tests__/__fixtures__/file1_recursion.json", "__tests__/__fixtures__/file2_recursion.json", "plain")).toBe(
     readFile("expected_03.txt"));
-  expect(gendiff("__tests__/__fixtures__/file1_recursion.yml", "__tests__/__fixtures__/file2_recursion.yml", "stylish")).toBe(
+  expect(gendiff("__tests__/__fixtures__/file1_recursion.yml", "__tests__/__fixtures__/file2_recursion.yml", "plain")).toBe(
     readFile("expected_03.txt"));
   });

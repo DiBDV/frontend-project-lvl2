@@ -15,26 +15,24 @@ export const plainRenderDiff = (diff) => {
           .entries(currentValue)
           .flatMap(([key, val]) => {
             if(val.type === "nested") {
-                return `${currentIndent}  ${key}: ${iter(val.value, depth + 1)}`;
+                return `Property '${key}' ${iter(val.value, depth + 1)}`; //make sure depth is needed? join over .join //
                 }
             else if(val.type === "added") {
-                    return `was added with value: ${val.value}`;
+                    return `Property '${key}' was added with value: ${val.value}`;
                   }            
             else if(val.type === "deleted") {
-                return `${currentIndent}- ${key}: ${val.value}`;
+                return `Property '${key}' was removed`;
             }
             else if(val.type === "changed") {
                 return [
-                  `${currentIndent}- ${key}: ${val.value[0]}`,
-                  `${currentIndent}+ ${key}: ${val.value[1]}`
+                  `Property '${key}' was updated. From '${val.value[0]}' to '${val.value[1]}'`,
                 ];
             }
             return `${currentIndent}  ${key}: ${val.value}`;
           });
-        return [
-          'Property',
+        return[ 
           ...lines,
-          `${bracketIndent}}`,
+          `${bracketIndent}`,
         ].join('\n');
       };
     
