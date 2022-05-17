@@ -24,6 +24,7 @@
               "__dirname"
             ]
           }
-        ]
+        ],
+        "prefer-object-has-own": "error"
       }
 }
