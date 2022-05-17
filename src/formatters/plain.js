@@ -13,7 +13,8 @@ export const plainRenderDiff = (diff) => {
     const iter = (currentValue, path) => {
         const lines = Object
           .entries(currentValue)
-          .filter(([_, val]) => val.type !== "unchanged")
+          // eslint-disable-next-line no-unused-vars
+          .filter(([_, val]) => val.type !== "unchanged") 
           .map(([key, val]) => {
             const currentPath = [...path, key];
             const currentKey = currentPath.join(".");
