@@ -1,34 +1,40 @@
 import _ from "lodash";
 
+const stringify = (currentValue) => {
+  if (_.isObject(currentValue)) { 
+    return '[complex value]';
+  } else if (_.isString(currentValue)) {
+    return `'${currentValue}'`;
+  }
+  return currentValue;
+};
+
 export const plainRenderDiff = (diff) => {
-    const iter = (currentValue) => {
-        if (!_.isObject(currentValue)) { 
-          return `${currentValue}`;
-        }
+    const iter = (currentValue, path) => {
         const lines = Object
           .entries(currentValue)
-          .flatMap(([key, val]) => {
+          .filter(([_, val]) => val.type !== "unchanged")
+          .map(([key, val]) => {
+            const currentPath = [...path, key];
+            const currentKey = currentPath.join(".");
             if(val.type === "nested") {
-                return `Property '${key}' ${iter(val.value)}`; 
-                //make sure depth is needed? join over .join //
-                }
+                return iter(val.value, currentPath);
+              }
             else if(val.type === "added") {
-                    return `Property '${key}' was added with value: ${val.value}`;
+                    return `Property '${currentKey}' was added with value: ${stringify(val.value)}`;
                   }            
             else if(val.type === "deleted") {
-                return `Property '${key}' was removed`;
+                return `Property '${currentKey}' was removed`;
             }
             else if(val.type === "changed") {
-                return [
-                  `Property '${key}' was updated. From '${val.value[0]}' to '${val.value[1]}'`,
-                ];
+                return `Property '${currentKey}' was updated. From ${stringify(val.value[0])} to ${stringify(val.value[1])}`;
             }
-            // return Object;
+            return ;
           });
         return[ 
           ...lines,
         ].join('\n');
       };
     
-      return iter(diff, 1);
+      return iter(diff, []);
 };

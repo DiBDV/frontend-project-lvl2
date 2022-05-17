@@ -7,7 +7,7 @@ export const renderFormat = (diff, formatName) => {
     } if (formatName === "stylish") {
         return stylishRenderDiff(diff, formatName);
     } if (formatName === "json") {
-        return JSON.stringify(diff, formatName);
+        return JSON.stringify(diff, null, 2);
     }
     throw new Error(`Format: ${formatName} not supported`);
 };

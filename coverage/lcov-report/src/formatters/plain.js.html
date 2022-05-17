@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.23% </span>
+                <span class="strong">95.65% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>20/21</span>
+                <span class='fraction'>22/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90% </span>
+                <span class="strong">91.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>9/10</span>
+                <span class='fraction'>11/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.23% </span>
+                <span class="strong">95.65% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/21</span>
+                <span class='fraction'>22/23</span>
             </div>
         
             
@@ -106,82 +106,82 @@
 <a name='L41'></a><a href='#L41'>41</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">18x</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import _ from "lodash";
 &nbsp;
-const spacesCount = 2;
-const replacer = " ";
+const stringify = (currentValue) =&gt; {
+  if (_.isObject(currentValue)) { 
+    return '[complex value]';
+  } else if (_.isString(currentValue)) {
+    return `'${currentValue}'`;
+  }
+  return currentValue;
+};
 &nbsp;
 export const plainRenderDiff = (diff) =&gt; {
-    const iter = (currentValue, depth) =&gt; {
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (!_.isObject(currentValue)) { 
-<span class="cstat-no" title="statement not covered" >          return `${currentValue}`;</span>
-        }
-        const indentSize = depth * spacesCount;
-        const currentIndent = replacer.repeat(indentSize);
-        const bracketIndent = replacer.repeat(indentSize - spacesCount);
+    const iter = (currentValue, path) =&gt; {
         const lines = Object
           .entries(currentValue)
-          .flatMap(([key, val]) =&gt; {
+          .filter(([_, val]) =&gt; val.type !== "unchanged")
+          .map(([key, val]) =&gt; {
+            const currentPath = [...path, key];
+            const currentKey = currentPath.join(".");
             if(val.type === "nested") {
-                return `Property '${key}' ${iter(val.value, depth + 1)}`; //make sure depth is needed? join over .join //
-                }
+                return iter(val.value, currentPath);
+              }
             else if(val.type === "added") {
-                    return `Property '${key}' was added with value: ${val.value}`;
+                    return `Property '${currentKey}' was added with value: ${stringify(val.value)}`;
                   }            
             else if(val.type === "deleted") {
-                return `Property '${key}' was removed`;
+                return `Property '${currentKey}' was removed`;
             }
-            else if(val.type === "changed") {
-                return [
-                  `Property '${key}' was updated. From '${val.value[0]}' to '${val.value[1]}'`,
-                ];
+            else <span class="missing-if-branch" title="else path not taken" >E</span>if(val.type === "changed") {
+                return `Property '${currentKey}' was updated. From ${stringify(val.value[0])} to ${stringify(val.value[1])}`;
             }
-            return `${currentIndent}  ${key}: ${val.value}`;
+<span class="cstat-no" title="statement not covered" >            return ;</span>
           });
         return[ 
           ...lines,
-          `${bracketIndent}`,
         ].join('\n');
       };
     
-      return iter(diff, 1);
+      return iter(diff, []);
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -190,7 +190,7 @@ export const plainRenderDiff = (diff) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Fri May 13 2022 20:29:20 GMT+0200 (Central European Summer Time)
+                at Tue May 17 2022 19:48:32 GMT+0200 (Central European Summer Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>
