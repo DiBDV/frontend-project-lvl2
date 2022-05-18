@@ -35,13 +35,13 @@ const stylishRenderDiff = (diff) => {
         if (val.type === 'nested') {
           return `${currentIndent}  ${key}: ${iter(val.value, currentDepth)}`;
         }
-        else if (val.type === 'added') {
+        if (val.type === 'added') {
           return `${currentIndent}+ ${key}: ${stringify(val.value, currentDepth)}`;
         }
-        else if (val.type === 'deleted') {
+        if (val.type === 'deleted') {
           return `${currentIndent}- ${key}: ${stringify(val.value, currentDepth)}`;
         }
-        else if (val.type === 'changed') {
+        if (val.type === 'changed') {
           return [
             `${currentIndent}- ${key}: ${stringify(val.value[0], currentDepth)}`,
             `${currentIndent}+ ${key}: ${stringify(val.value[1], currentDepth)}`

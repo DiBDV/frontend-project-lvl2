@@ -22,13 +22,13 @@ const plainRenderDiff = (diff) => {
         if (val.type === 'nested') {
           return iter(val.value, currentPath);
         }
-        else if (val.type === 'added') {
+        if (val.type === 'added') {
           return `Property '${currentKey}' was added with value: ${stringify(val.value)}`;
-        }            
-        else if (val.type === 'deleted') {
+        }
+        if (val.type === 'deleted') {
           return `Property '${currentKey}' was removed`;
         }
-        else if (val.type === 'changed') {
+        if (val.type === 'changed') {
           return `Property '${currentKey}' was updated. From ${stringify(val.value[0])} to ${stringify(val.value[1])}`;
         }
         throw new Error(`Not expected type: ${val.type}`);
@@ -37,7 +37,7 @@ const plainRenderDiff = (diff) => {
       ...lines,
     ].join('\n');
   };
-    
+
   return iter(diff, []);
 };
 
