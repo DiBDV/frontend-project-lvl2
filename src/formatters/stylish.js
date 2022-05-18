@@ -25,7 +25,7 @@ const stringify = (currentValue, depth) => {
 };
 
 
-export const stylishRenderDiff = (diff) => {
+const stylishRenderDiff = (diff) => {
   const iter = (currentValue, depth) => {
     const indentSize = depth * spacesCount;
     const currentIndent = replacer.repeat(indentSize - offcet);
@@ -60,3 +60,5 @@ export const stylishRenderDiff = (diff) => {
     
   return iter(diff, 1);
 };
+
+export default stylishRenderDiff;

@@ -2,7 +2,7 @@ import _ from 'lodash';
 import path from 'path';
 import { getFileContent } from './get-file-content.js';
 import { parse } from './parsers.js';
-import { renderFormat } from './formatters/index.js';
+import renderFormat from './formatters/index.js';
 
 export const buildDiff = (data1, data2) => {
   const keys1 = Object.keys(data1);
