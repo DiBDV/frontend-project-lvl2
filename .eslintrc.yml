@@ -27,5 +27,3 @@ rules:
   semi:
     - error
     - always
-  trailing-comma:
-    - false
