@@ -3,11 +3,6 @@
 import program from 'commander';
 import gendiff from '../src/index.js';
 
-
-//commander.js integration to generate helper functionality
-// const program = new Command();
-
-
 program
   .description('Compares two configuration files and shows the difference.')
   .version('0.7.0')
