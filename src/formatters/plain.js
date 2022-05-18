@@ -33,7 +33,7 @@ const plainRenderDiff = (diff) => {
         }
         throw new Error(`Not expected type: ${val.type}`);
       });
-    return[
+    return [
       ...lines,
     ].join('\n');
   };

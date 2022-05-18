@@ -44,7 +44,7 @@ const stylishRenderDiff = (diff) => {
         if (val.type === 'changed') {
           return [
             `${currentIndent}- ${key}: ${stringify(val.value[0], currentDepth)}`,
-            `${currentIndent}+ ${key}: ${stringify(val.value[1], currentDepth)}`
+            `${currentIndent}+ ${key}: ${stringify(val.value[1], currentDepth)}`,
           ];
         }
         return `${currentIndent}  ${key}: ${stringify(val.value, currentDepth)}`;
@@ -55,7 +55,7 @@ const stylishRenderDiff = (diff) => {
       `${bracketIndent}}`,
     ].join('\n');
   };
-    
+
   return iter(diff, 1);
 };
 
