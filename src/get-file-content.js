@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { resolve } from 'path';
 
-export const getFileContent = (filepath) => {
+const getFileContent = (filepath) => {
   try {
     return fs.readFileSync(resolve(filepath), 'utf8');
   } catch (error) {
@@ -9,3 +9,5 @@ export const getFileContent = (filepath) => {
     throw new Error(`File ${filepath} not found`);
   }
 };
+
+export default getFileContent;

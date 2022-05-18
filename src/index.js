@@ -11,16 +11,16 @@ export const buildDiff = (data1, data2) => {
   const result = {};
   for (const key of keys) {
     if (_.isPlainObject(data1[key]) && _.isPlainObject(data2[key])) {
-      result[key] = {type: 'nested', value: buildDiff(data1[key], data2[key])};
+      result[key] = { type: 'nested', value: buildDiff(data1[key], data2[key]) };
     } else if (!_.has(data1, key)) {
-      result[key] = {type: 'added', value: data2[key]};
+      result[key] = { type: 'added', value: data2[key] };
     } else if (!_.has(data2, key)) {
-      result[key] = {type: 'deleted', value: data1[key]} ;
+      result[key] = { type: 'deleted', value: data1[key] } ;
     } else if (!_.isEqual(data1[key], data2[key])) {
-      result[key] = {type: 'changed', value: [data1[key], data2[key]]};
+      result[key] = { type: 'changed', value: [data1[key], data2[key]] };
     } else {
-      result[key] = {type: 'unchanged', value: data1[key]};
-    } 
+      result[key] = { type: 'unchanged', value: data1[key] };
+    }
   }
 
   return result;

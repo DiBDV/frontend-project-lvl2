@@ -5,7 +5,7 @@ const replacer = ' ';
 const offcet = 2;
 
 const stringify = (currentValue, depth) => {
-  if (!_.isObject(currentValue)) { 
+  if (!_.isObject(currentValue)) {
     return `${currentValue}`;
   }
 
@@ -21,9 +21,7 @@ const stringify = (currentValue, depth) => {
     ...lines,
     `${bracketIndent}}`,
   ].join('\n');
-
 };
-
 
 const stylishRenderDiff = (diff) => {
   const iter = (currentValue, depth) => {
@@ -34,16 +32,16 @@ const stylishRenderDiff = (diff) => {
     const lines = Object
       .entries(currentValue)
       .flatMap(([key, val]) => {
-        if(val.type === 'nested') {
+        if (val.type === 'nested') {
           return `${currentIndent}  ${key}: ${iter(val.value, currentDepth)}`;
         }
-        else if(val.type === 'added') {
+        else if (val.type === 'added') {
           return `${currentIndent}+ ${key}: ${stringify(val.value, currentDepth)}`;
-        }            
-        else if(val.type === 'deleted') {
+        }
+        else if (val.type === 'deleted') {
           return `${currentIndent}- ${key}: ${stringify(val.value, currentDepth)}`;
         }
-        else if(val.type === 'changed') {
+        else if (val.type === 'changed') {
           return [
             `${currentIndent}- ${key}: ${stringify(val.value[0], currentDepth)}`,
             `${currentIndent}+ ${key}: ${stringify(val.value[1], currentDepth)}`

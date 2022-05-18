@@ -3,7 +3,7 @@ import _ from 'lodash';
 const stringify = (currentValue) => {
   if (_.isObject(currentValue)) {
     return '[complex value]';
-  } 
+  }
   if (_.isString(currentValue)) {
     return `'${currentValue}'`;
   }
@@ -31,9 +31,9 @@ const plainRenderDiff = (diff) => {
         else if (val.type === 'changed') {
           return `Property '${currentKey}' was updated. From ${stringify(val.value[0])} to ${stringify(val.value[1])}`;
         }
-        return ;
+        throw new Error(`Not expected type: ${val.type}`);
       });
-    return[ 
+    return[
       ...lines,
     ].join('\n');
   };
