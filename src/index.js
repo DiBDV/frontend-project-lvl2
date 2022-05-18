@@ -15,7 +15,7 @@ export const buildDiff = (data1, data2) => {
     } else if (!_.has(data1, key)) {
       result[key] = { type: 'added', value: data2[key] };
     } else if (!_.has(data2, key)) {
-      result[key] = { type: 'deleted', value: data1[key] } ;
+      result[key] = { type: 'deleted', value: data1[key] };
     } else if (!_.isEqual(data1[key], data2[key])) {
       result[key] = { type: 'changed', value: [data1[key], data2[key]] };
     } else {
@@ -35,8 +35,8 @@ const gendiff = (filepath1, filepath2, format) => {
 
   const diff = buildDiff(data1, data2);
   const result = renderFormat(diff, format);
+  
   return result;
-
 };
 
 export default gendiff;
