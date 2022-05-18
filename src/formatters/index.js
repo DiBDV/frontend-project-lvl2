@@ -1,7 +1,7 @@
 import { stylishRenderDiff } from "./stylish.js";
 import { plainRenderDiff } from "./plain.js";
 
-export const renderFormat = (diff, formatName) => {
+export const renderFormat = (diff, formatName = 'stylish') => {
     if (formatName === "plain") {
         return plainRenderDiff(diff, formatName);
     } if (formatName === "stylish") {
