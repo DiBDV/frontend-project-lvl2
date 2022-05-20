@@ -7,3 +7,17 @@
 
 ### Project description
 This is a CLI based progam to compate 2 files
+
+### Execution examples
+
+Without any parameters:
+https://asciinema.org/a/ov0Vd3gkYxMtrE7tKdluziCO4
+
+With "stylish" formatting:
+https://asciinema.org/a/SuAKqSi9GCJBVJ8rbwSffsvRw
+
+With "plain" formatting:
+https://asciinema.org/a/zycMxWnq34ttzcp37xAqdCQ8G
+
+With "JSON" formatting:
+asciinema.org/a/70sB1TNDbd67YxNdSJuWU2DAM

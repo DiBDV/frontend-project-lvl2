@@ -35,7 +35,7 @@ const gendiff = (filepath1, filepath2, format) => {
 
   const diff = buildDiff(data1, data2);
   const result = renderFormat(diff, format);
-  
+
   return result;
 };
 
