@@ -50,3 +50,5 @@ node_modules
 INFO.md
 PEOPLE.md
 
+## CodeClimat directories
+coverage
