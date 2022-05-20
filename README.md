@@ -1,5 +1,5 @@
 ### Tests and linter status:
-[![Actions Status](https://github.com/DiBDV/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/DiBDV/frontend-project-lvl2/actions)]
+[![Actions Status](https://github.com/DiBDV/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/DiBDV/frontend-project-lvl2/actions)
 [![Github Actions Status](https://github.com/DiBDV/frontend-project-lvl2/blob/main/.github/workflows/github-actions-gendiff.yml/badge.svg)](https://github.com/DiBDV/frontend-project-lvl2/actions)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/d8b1ec4edff2568563d1/maintainability)](https://codeclimate.com/github/DiBDV/frontend-project-lvl2/maintainability)
