@@ -21,6 +21,8 @@ All games are CLI based and can be launched in your terminal. The following prog
 mkdir gendiff ~/Documents
 cd ~/Documents/gendiff
 git clone https://github.com/DiBDV/frontend-project-lvl2.git
+cd frontend-project-lvl2
+npm install
 ```
 
 ### Execution examples

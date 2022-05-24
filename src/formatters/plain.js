@@ -15,7 +15,6 @@ const plainRenderDiff = (diff) => {
     const lines = currentValue
       .filter(({ type }) => type !== 'unchanged')
       .map(({ key, value }) => {
-        console.log(currentValue.map);
         const currentPath = [...path, key];
         const currentKey = currentPath.join('.');
         if (value.type === 'nested') {
