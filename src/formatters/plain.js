@@ -12,26 +12,25 @@ const stringify = (currentValue) => {
 
 const plainRenderDiff = (diff) => {
   const iter = (currentValue, path) => {
-    const lines = Object
-      .entries(currentValue)
-    // eslint-disable-next-line no-unused-vars
-      .filter(([_, val]) => val.type !== 'unchanged')
-      .map(([key, val]) => {
+    const lines = currentValue
+      .filter(({ type }) => type !== 'unchanged')
+      .map(({ key, value }) => {
+        console.log(currentValue.map);
         const currentPath = [...path, key];
         const currentKey = currentPath.join('.');
-        if (val.type === 'nested') {
-          return iter(val.value, currentPath);
+        if (value.type === 'nested') {
+          return iter(value.value, currentPath);
         }
-        if (val.type === 'added') {
-          return `Property '${currentKey}' was added with value: ${stringify(val.value)}`;
+        if (value.type === 'added') {
+          return `Property '${currentKey}' was added with value: ${stringify(value.value)}`;
         }
-        if (val.type === 'deleted') {
+        if (value.type === 'deleted') {
           return `Property '${currentKey}' was removed`;
         }
-        if (val.type === 'changed') {
-          return `Property '${currentKey}' was updated. From ${stringify(val.value[0])} to ${stringify(val.value[1])}`;
+        if (value.type === 'changed') {
+          return `Property '${currentKey}' was updated. From ${stringify(value.value[0])} to ${stringify(value.value[1])}`;
         }
-        throw new Error(`Not expected type: ${val.type}`);
+        throw new Error(`Not expected type: ${value.type}`);
       });
     return [
       ...lines,

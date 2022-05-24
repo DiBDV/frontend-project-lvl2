@@ -12,9 +12,8 @@ const stringify = (currentValue, depth) => {
   const indentSize = depth * spacesCount;
   const currentIndent = replacer.repeat(indentSize);
   const bracketIndent = replacer.repeat(indentSize - spacesCount);
-  const lines = Object
-    .entries(currentValue)
-    .map(([key, val]) => `${currentIndent}${key}: ${stringify(val, depth + 1)}`);
+  const lines = currentValue
+    .map(({ key, value }) => `${currentIndent}${key}: ${stringify(value, depth + 1)}`);
 
   return [
     '{',
@@ -29,25 +28,24 @@ const stylishRenderDiff = (diff) => {
     const currentIndent = replacer.repeat(indentSize - offcet);
     const bracketIndent = replacer.repeat(indentSize - spacesCount);
     const currentDepth = depth + 1;
-    const lines = Object
-      .entries(currentValue)
-      .flatMap(([key, val]) => {
-        if (val.type === 'nested') {
-          return `${currentIndent}  ${key}: ${iter(val.value, currentDepth)}`;
+    const lines = currentValue
+      .map(({ key, value }) => {
+        if (value.type === 'nested') {
+          return `${currentIndent}  ${key}: ${iter(value.value, currentDepth)}`;
         }
-        if (val.type === 'added') {
-          return `${currentIndent}+ ${key}: ${stringify(val.value, currentDepth)}`;
+        if (value.type === 'added') {
+          return `${currentIndent}+ ${key}: ${stringify(value.value, currentDepth)}`;
         }
-        if (val.type === 'deleted') {
-          return `${currentIndent}- ${key}: ${stringify(val.value, currentDepth)}`;
+        if (value.type === 'deleted') {
+          return `${currentIndent}- ${key}: ${stringify(value.value, currentDepth)}`;
         }
-        if (val.type === 'changed') {
+        if (value.type === 'changed') {
           return [
-            `${currentIndent}- ${key}: ${stringify(val.value[0], currentDepth)}`,
-            `${currentIndent}+ ${key}: ${stringify(val.value[1], currentDepth)}`,
+            `${currentIndent}- ${key}: ${stringify(value.value[0], currentDepth)}`,
+            `${currentIndent}+ ${key}: ${stringify(value.value[1], currentDepth)}`,
           ];
         }
-        return `${currentIndent}  ${key}: ${stringify(val.value, currentDepth)}`;
+        return `${currentIndent}  ${key}: ${stringify(value.value, currentDepth)}`;
       });
     return [
       '{',
