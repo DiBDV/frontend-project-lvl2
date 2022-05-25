@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 const spacesCount = 4;
 const replacer = ' ';
-const offcet = 2;
+const offset = 2;
 
 const stringify = (currentValue, depth) => {
   if (!_.isObject(currentValue)) {
@@ -25,7 +25,7 @@ const stringify = (currentValue, depth) => {
 const stylishRenderDiff = (diff) => {
   const iter = (currentValue, depth) => {
     const indentSize = depth * spacesCount;
-    const currentIndent = replacer.repeat(indentSize - offcet);
+    const currentIndent = replacer.repeat(indentSize - offset);
     const bracketIndent = replacer.repeat(indentSize - spacesCount);
     const currentDepth = depth + 1;
     const lines = currentValue
