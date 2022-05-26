@@ -26,8 +26,10 @@ const gendiff = (filepath1, filepath2, format) => {
   const file1Content = getFileContent(filepath1);
   const file2Content = getFileContent(filepath2);
 
-  const data1 = parse(file1Content, path.extname(filepath1));
-  const data2 = parse(file2Content, path.extname(filepath2));
+  const extension1 = path.extname(filepath1);
+  const extension2 = path.extname(filepath2);
+  const data1 = parse(file1Content, extension1.substring(1));
+  const data2 = parse(file2Content, extension2.substring(1));
 
   const diff = buildDiff(data1, data2);
   const result = renderFormat(diff, format);
