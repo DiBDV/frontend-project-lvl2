@@ -2,14 +2,16 @@ import stylishRenderDiff from './stylish.js';
 import plainRenderDiff from './plain.js';
 
 const renderFormat = (diff, formatName = 'stylish') => {
-  if (formatName === 'plain') {
-    return plainRenderDiff(diff);
-  } if (formatName === 'stylish') {
-    return stylishRenderDiff(diff);
-  } if (formatName === 'json') {
-    return JSON.stringify(diff, null, 2);
+  switch (formatName) {
+    case 'plain':
+      return plainRenderDiff(diff);
+    case 'stylish':
+      return stylishRenderDiff(diff);
+    case 'json':
+      return JSON.stringify(diff, null, 2);
+    default:
+      throw new Error(`Format: ${formatName} not supported`);
   }
-  throw new Error(`Format: ${formatName} not supported`);
 };
 
 export default renderFormat;
